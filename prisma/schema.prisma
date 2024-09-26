@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum CurrencyType {
+  BRL
+  BTC
+}
+
+enum TransactionType {
+  D
+  W
+  T
+}
+
+model Account {
+  id        String    @id @db.Char(36)
+  name      String    @db.VarChar(100)
+  email     String    @unique @db.VarChar(100)
+  password  String    @db.VarChar(100)
+  createdAt DateTime
+  updatedAt DateTime?
+
+  Transaction Transaction[]
+  Balance     Balance[]
+}
+
+model Balance {
+  account   Account      @relation(fields: [accountId], references: [id])
+  accountId String       @db.Char(36)
+  currency  CurrencyType @unique
+  amount    Decimal
+  // createdAt DateTime
+  // updatedAt DateTime?
+
+  @@id(name: "id", [accountId, currency])
+}
+
+model Transaction {
+  id           String          @id @db.Char(36)
+  account      Account         @relation(fields: [accountId], references: [id])
+  accountId    String          @db.Char(36)
+  currency     CurrencyType
+  type         TransactionType
+  exchangeRate Decimal
+  amount       Decimal
+  date         DateTime
+  createdAt    DateTime
+  updatedAt    DateTime?
+}
+
+model BitcoinHistory {
+  id   String   @id @db.Char(36)
+  date DateTime
+  high Decimal
+  low  Decimal
+  vol  Decimal
+  last Decimal
+  buy  Decimal
+  sell Decimal
+  open Decimal
+}
