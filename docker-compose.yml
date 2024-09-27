@@ -1,6 +1,18 @@
 version: '3.8'
 
 services:
+  app:
+    container_name: eduzz-market
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    # networks:
+    #   - eduzz_network
+
   postgres:
     container_name: postgres
     image: postgres:15-alpine
@@ -12,24 +24,12 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    networks:
-      - eduzz_network
+    # networks:
+    #   - eduzz_network
 
-  app:
-    container_name: eduzz-market
-    build: .
-    ports:
-      - "3000:3000"
-    env_file:
-      - .env
-    depends_on:
-      - postgres
-    networks:
-      - eduzz_network
-
-networks:
-  eduzz_network:
-    driver: bridge
+# networks:
+#   eduzz_network:
+#     driver: bridge
 
 volumes:
   postgres_data:

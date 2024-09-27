@@ -5,3 +5,4 @@ export * from "./make-sell-controller.factory";
 export * from "./make-get-diary-volume-controller.factory";
 export * from "./make-collect-bitcoin-price-controller.factory";
 export * from "./make-purge-old-bitcoin-history-controller.factory";
+export * from "./make-get-diary-bitcoin-price-controller.factory";

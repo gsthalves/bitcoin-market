@@ -23,33 +23,4 @@ export class AccountEntity extends Entity<AccountEntityProps> {
   get password(): string {
     return this.props.password;
   }
-
-  public create(): AccountEntity {
-    if (!this.props.id)
-      throw new BusinessValidationError(
-        "id is mandatory to create an account."
-      );
-
-    if (!this.props.name)
-      throw new BusinessValidationError(
-        "name is mandatory to create an account."
-      );
-
-    if (!this.props.email)
-      throw new BusinessValidationError(
-        "email is mandatory to create an account."
-      );
-
-    if (!this.props.password)
-      throw new BusinessValidationError(
-        "password is mandatory to create an account."
-      );
-
-    if (!this.props.createdAt)
-      throw new BusinessValidationError(
-        "createdAt is mandatory to create an account."
-      );
-
-    return this;
-  }
 }

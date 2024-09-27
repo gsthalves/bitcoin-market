@@ -13,7 +13,7 @@ export class FastifyServer {
     this.fastify = Fastify();
   }
 
-  public async start(port: number) {
+  public async start(host: string, port: number) {
     try {
       this.logger.info(
         "FastifyServer.start",
@@ -27,12 +27,17 @@ export class FastifyServer {
         );
       });
 
-      await this.fastify.listen({ port: port }, () => {
-        this.logger.info(
-          "FastifyServer.start",
-          `Fastify server started on port: ${port.toString()}.`
-        );
-      });
+      await this.fastify.listen(
+        { host: host, port: port },
+        (error, address) => {
+          if (error) throw new Error(error.message);
+
+          this.logger.info(
+            "FastifyServer.start",
+            `Fastify server started on: ${address}.`
+          );
+        }
+      );
     } catch (error: any) {
       this.logger.info(
         "FastifyServer.start",

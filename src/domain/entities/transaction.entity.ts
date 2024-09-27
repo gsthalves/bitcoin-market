@@ -44,28 +44,4 @@ export class TransactionEntity extends Entity<TransactionEntityDepositProps> {
   public get date(): Date {
     return this.props.date;
   }
-
-  public deposit(): TransactionEntity {
-    if (!this.id)
-      throw new BusinessValidationError(
-        "id is mandatory to create an Transaction."
-      );
-
-    if (!this.accountId)
-      throw new BusinessValidationError(
-        "accountId is mandatory to create an Transaction."
-      );
-
-    // if (!this.email)
-    //   throw new BusinessValidationError(
-    //     "email is mandatory to create an Transaction."
-    //   );
-
-    if (!this.createdAt)
-      throw new BusinessValidationError(
-        "createdAt is mandatory to create an Transaction."
-      );
-
-    return this;
-  }
 }

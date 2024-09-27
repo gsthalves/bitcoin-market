@@ -5,3 +5,4 @@ export * from "./sell.controller";
 export * from "./get-diary-volume.controller";
 export * from "./collect-bitcoin-price.controller";
 export * from "./purge-old-bitcoin-history.controller";
+export * from "./get-diary-bitcoin-price.controller";

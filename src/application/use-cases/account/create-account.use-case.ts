@@ -38,9 +38,7 @@ export class CreateAccountUseCase implements ICreateAccountUseCase {
         password: passwordHash.hash,
       });
 
-      const response = await this.accountRepository.create(
-        accountEntity.create()
-      );
+      const response = await this.accountRepository.create(accountEntity);
 
       this.logger.info(
         "CreateAccountUseCase.execute",

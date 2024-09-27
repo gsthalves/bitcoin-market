@@ -4,6 +4,7 @@ import {
   createAccountRoute,
   depositRoute,
   getBalanceRoute,
+  getDiaryBitcoinPriceRoute,
   getDiaryVolumeRoute,
   getExtractRoute,
   getPositionRoute,
@@ -23,6 +24,7 @@ const routes = async (fastify: FastifyInstance) => {
   fastify.register(getPositionRoute);
   fastify.register(getExtractRoute);
   fastify.register(getDiaryVolumeRoute);
+  fastify.register(getDiaryBitcoinPriceRoute);
 };
 
 export { routes };

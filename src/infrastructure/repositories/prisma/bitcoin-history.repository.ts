@@ -37,6 +37,7 @@ export class BitcoinHistoryRepository implements IBitcoinHistoryRepository {
       );
 
       return new BitcoinHistoryEntity({
+        id: response.id,
         date: response.date,
         high: response.high.toNumber(),
         low: response.low.toNumber(),
@@ -90,6 +91,59 @@ export class BitcoinHistoryRepository implements IBitcoinHistoryRepository {
       );
 
       throw new DatabaseError("Error to purge old bitcoin history.");
+    }
+  }
+
+  async findByPeriod(
+    startDate: Date,
+    endDate: Date
+  ): Promise<BitcoinHistoryEntity[] | null> {
+    this.logger.info(
+      "BitcoinHistoryRepository.findByPeriod",
+      "Executing get bitcoin history by period."
+    );
+
+    try {
+      const response = await this.prisma.bitcoinHistory.findMany({
+        where: {
+          date: {
+            gte: startDate,
+            lte: endDate,
+          },
+        },
+      });
+
+      this.logger.info(
+        "BitcoinHistoryRepository.findByPeriod",
+        "Finished get bitcoin history by period."
+      );
+
+      if (!response || response.length === 0) return null;
+
+      return response.map(
+        (item) =>
+          new BitcoinHistoryEntity({
+            id: item.id,
+            date: item.date,
+            high: item.high.toNumber(),
+            low: item.low.toNumber(),
+            vol: item.vol.toNumber(),
+            last: item.last.toNumber(),
+            buy: item.buy.toNumber(),
+            sell: item.sell.toNumber(),
+            open: item.open.toNumber(),
+          })
+      );
+    } catch (error: any) {
+      this.logger.error(
+        "BitcoinHistoryRepository.findByPeriod",
+        `Error during get bitcoin history by period.`,
+        {
+          error: error.stack,
+        }
+      );
+
+      throw new DatabaseError("Error to get bitcoin history by period.");
     }
   }
 }

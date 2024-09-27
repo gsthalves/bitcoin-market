@@ -5,7 +5,7 @@
             "name": "Debug",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceFolder}/src/main/main.ts",
+            "program": "${workspaceFolder}/src/main/index.ts",
             "runtimeExecutable": "${workspaceFolder}/node_modules/tsx/node_modules/.bin/tsx",
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",

@@ -36,7 +36,7 @@ export class DepositUseCase implements IDepositUseCase {
         date: new Date(),
       });
 
-      await this.transactionRepository.deposit(transaction.deposit());
+      await this.transactionRepository.deposit(transaction);
 
       const balance = await this.balanceRepository.findByAccountAndCurrency(
         account.id,

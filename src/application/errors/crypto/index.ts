@@ -6,3 +6,4 @@ export * from "./sell.error";
 export * from "./get-diary-volume.error";
 export * from "./collect-bitcoin-price.error";
 export * from "./purge-old-bitcoin-history.error";
+export * from "./get-diary-bitcoin-price.error";
