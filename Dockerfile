@@ -1,20 +1,27 @@
-FROM node:18-slim
+FROM node:20-slim
 
-# setup application
+RUN apt-get update -y
+RUN apt-get install openssl -y
 
-RUN mkdir -p /home/app
-WORKDIR /home/app
+WORKDIR /usr/src/app
 
-COPY package.json ./
-COPY .npmrc ./
+COPY package*.json ./
 
 RUN npm install
 
-COPY . ./
-COPY --chown=node:node . .
+RUN npm install -g prisma@5.20.0
+
+COPY . .
+
+# I added migrate here to be more easy to test (it is not de best way to do that).
+
+# RUN npx prisma migrate dev 
+
+RUN npx prisma generate
 
 RUN npm run build
 
-EXPOSE 8000
+EXPOSE 3000
 
-CMD ["npm", "run", "prd"]
+# Command to start the Node.js application
+CMD ["npm", "start"]

@@ -2,18 +2,19 @@
   "name": "eduzz-market",
   "version": "1.0.0",
   "description": "",
-  "main": "src/main/main.ts",
+  "main": "./dist/main/main.js",
   "scripts": {
     "prelint": "tsc --noEmit",
     "lint": "eslint src/",
-    "prebuild": "rimraf build && npm run lint && ts-patch install -s",
-    "build": "tsc --build",
-    "dev": "tsx watch src/main/main.ts"
+    "prebuild": "rimraf dist && npm run lint",
+    "build": "tspc",
+    "dev": "tsx watch src/main/main.ts",
+    "start": "node dist/main/main.js"
   },
   "author": "Gustavo Henrique Alves",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "5.19.1",
+    "@prisma/client": "5.20.0",
     "argon2": "^0.41.1",
     "dotenv": "^16.4.5",
     "fastify": "^5.0.0",
@@ -30,11 +31,11 @@
     "@types/node-cron": "^3.0.11",
     "eslint": "^9.10.0",
     "globals": "^15.9.0",
-    "prisma": "^5.19.1",
+    "prisma": "5.20.0",
     "rimraf": "^6.0.1",
-    "ts-patch": "^2.1.0",
+    "ts-patch": "^3.2.1",
     "tsx": "^4.19.1",
-    "typescript": "^5.6.2",
+    "typescript": "5.5.2",
     "typescript-eslint": "^8.6.0",
     "typescript-transform-paths": "^3.4.6"
   }
