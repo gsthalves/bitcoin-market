@@ -11,7 +11,6 @@ const fastifyErrorHandler = (
 
   logger.error("fastifyErrorHandler", error.message, {
     statusCode: error?.statusCode || 500,
-    // internalError: error?.internalError || "GENERICERROR500",
     stack: error.stack,
   });
 

@@ -1,5 +1,4 @@
 import { AccountEntity, Entity, EntityProps } from "@/domain/entities";
-import { BusinessValidationError } from "@/domain/errors";
 import { CurrencyType, TransactionType } from "@/domain/enums";
 
 export type TransactionEntityDepositProps = {

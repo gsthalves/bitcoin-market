@@ -3,7 +3,8 @@ import { ILoggerAdapter } from "@/application/adapters";
 import { makePurgeOldBitcoinHistoryController } from "@/main/factories";
 
 const purgeOldBitcoinHistoryJob = (logger: ILoggerAdapter) => {
-  const expression = "0 0 * * *";
+  const expression = "0 0 * * *"; // every day at 00:00
+  // const expression = "0/10 * * * * * *"; // 10 seconds
 
   logger.info(
     "purgeOldBitcoinHistoryJob",

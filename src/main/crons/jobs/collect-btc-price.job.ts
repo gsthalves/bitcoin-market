@@ -3,8 +3,8 @@ import { ILoggerAdapter } from "@/application/adapters";
 import { makeCollectBitcoinPriceController } from "@/main/factories";
 
 const collectBtcPrice = (logger: ILoggerAdapter) => {
-  // const expression = "*/10 * * * *";
-  const expression = "0/10 * * * * * *";
+  const expression = "*/10 * * * *"; // 10 minutes
+  // const expression = "0/10 * * * * * *"; // 10 seconds
 
   logger.info(
     "collectBtcPrice",

@@ -1,5 +1,4 @@
 import { Entity, EntityProps } from "@/domain/entities";
-import { BusinessValidationError } from "@/domain/errors";
 
 export type AccountEntityProps = {
   name: string;
