@@ -126,6 +126,7 @@ export class GetExtractUseCase implements IGetExtractUseCase {
 
       if (error instanceof AccountNotExistsError) throw error;
       if (error instanceof InvalidRangeDateError) throw error;
+      if (error instanceof ConfigurationError) throw error;
 
       throw new GetBalanceError("Error to get account extract.");
     }
