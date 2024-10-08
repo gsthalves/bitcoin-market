@@ -1,4 +1,4 @@
-# EDUZZ MARKET #
+# BITCOIN MARKET #
 
 ## Rodar com Docker ##
 
